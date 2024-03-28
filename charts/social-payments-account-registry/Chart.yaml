@@ -13,9 +13,9 @@ dependencies:
   repository: oci://registry-1.docker.io/bitnamicharts
   version: 18.x.x
   condition: redis.enabled
-- name: spar-g2pconnect-id-mapper
+- name: openg2p-spar-mapper-api
   version: 0.1.0
-  condition: spar-g2pconnect-id-mapper.enabled
+  condition: openg2p-spar-mapper-api.enabled
 - name: sunbird-rc-g2p-mapper-registry
   version: 0.1.0
   condition: sunbird-rc-g2p-mapper-registry.enabled

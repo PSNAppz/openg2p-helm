@@ -3,7 +3,7 @@ global:
 
 replicaCount: 1
 image:
-  repository: openg2p/spar-g2pconnect-id-mapper
+  repository: openg2p/openg2p-spar-mapper-api
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "develop"
@@ -75,12 +75,12 @@ tolerations: []
 affinity: {}
 
 envVars:
-  SPAR_G2PCONNECT_MAPPER_DB_HOSTNAME: '{{ include "postgresql.v1.primary.fullname" .Subcharts.postgresql }}'
-  SPAR_G2PCONNECT_MAPPER_DB_USERNAME: "sparuser"
-  SPAR_G2PCONNECT_MAPPER_OPENAPI_ROOT_PATH: "/mapper/v1"
+  OPENG2P_SPAR_MAPPER_API_DB_HOSTNAME: '{{ include "postgresql.v1.primary.fullname" .Subcharts.postgresql }}'
+  OPENG2P_SPAR_MAPPER_API_DB_USERNAME: "openg2p_spar_user"
+  OPENG2P_SPAR_MAPPER_API_OPENAPI_ROOT_PATH: "/mapper/v1"
 
 envVarsFrom:
-  SPAR_G2PCONNECT_MAPPER_DB_PASSWORD:
+  OPENG2P_SPAR_MAPPER_API_DB_PASSWORD:
     secretKeyRef:
       name: '{{ include "postgresql.v1.primary.fullname" .Subcharts.postgresql }}'
       key: password
@@ -107,8 +107,8 @@ istio:
 postgresql:
   enabled: true
   auth:
-    username: sparuser
-    database: spardb
+    username: openg2p_spar_user
+    database: openg2p_spar_db
   primary:
     extendedConfiguration: |-
       wal_level = logical
